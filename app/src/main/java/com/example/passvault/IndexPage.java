@@ -21,13 +21,21 @@ public class IndexPage extends AppCompatActivity {
         setContentView(R.layout.activity_index_page);
 
 
-        sign_up = (Button) findViewById(R.id.signup_Button);
-        log_in = (Button) findViewById(R.id.login_Button);
+        sign_up = findViewById(R.id.signup_Button);
+        log_in = findViewById(R.id.login_Button);
 
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent =  new Intent(IndexPage.this, SignUp.class);
+                startActivity(intent);
+            }
+        });
+
+        log_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(IndexPage.this, LoginPage.class);
                 startActivity(intent);
             }
         });
