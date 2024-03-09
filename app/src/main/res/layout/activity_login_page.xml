@@ -15,14 +15,152 @@
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="@dimen/_300sdp"
             app:lottie_rawRes="@raw/womanlogin"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"/>
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_40sdp"
+        app:cardElevation="@dimen/_30sdp">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#EFE7FB"
+            android:padding="@dimen/_25sdp">
+
+            <TextView
+                android:id="@+id/username_login_textview"
+                android:text="Username"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
 
 
+            <EditText
+                android:id="@+id/username_login_edittext"
+                android:hint="Enter Username"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                android:maxLength="10"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:inputType="text"
+                android:drawableStart="@drawable/baseline_account_circle_24"
+                android:drawablePadding="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/custom_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp" />
+
+            <TextView
+                android:id="@+id/password_login_textview"
+                android:text="Password"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/password_login_edittext"
+                android:hint="Enter Password"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                android:maxLength="8"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:inputType="textPassword"
+                android:drawableStart="@drawable/baseline_lock_outline_24"
+                android:drawableEnd="@drawable/eye_visible"
+                android:drawablePadding="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/custom_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp" />
+
+            <TextView
+                android:id="@+id/confirmpassword_login_textview"
+                android:text="Confirm Password"
+                android:textSize="@dimen/_16sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/confirmpassword_login_edittext"
+                android:hint="Confirm Your Password"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                android:maxLength="8"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:inputType="textPassword"
+                android:drawableStart="@drawable/baseline_lock_outline_24"
+                android:drawableEnd="@drawable/eye_visible"
+                android:drawablePadding="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/custom_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp" />
+
+            <TextView
+                android:id="@+id/forgotPassword_textview"
+                android:text="Forgot Password?"
+                android:textSize="@dimen/_12sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/login_Button"
+                    android:layout_weight="2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_round_button"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:text="LOG IN"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_20sdp"
+                    android:textStyle="bold"
+                    tools:ignore="HardcodedText" />
+
+            </LinearLayout>
+        </LinearLayout>
+        </ScrollView>
+    </androidx.cardview.widget.CardView>
 
 
 

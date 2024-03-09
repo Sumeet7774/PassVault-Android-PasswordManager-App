@@ -34,7 +34,7 @@
             android:padding="@dimen/_25sdp">
 
             <TextView
-                android:id="@+id/username_textview1"
+                android:id="@+id/username_textview"
                 android:text="Username"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
-                android:id="@+id/username_edittext1"
+                android:id="@+id/username_edittext"
                 android:hint="Enter Username"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:textSize="@dimen/_15sdp"
@@ -61,7 +61,7 @@
                 android:layout_height="@dimen/_40sdp" />
 
             <TextView
-                android:id="@+id/email_textview1"
+                android:id="@+id/email_textview"
                 android:text="Email"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
@@ -72,7 +72,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
-                android:id="@+id/email_edittext1"
+                android:id="@+id/email_edittext"
                 android:hint="Enter Email"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:textSize="@dimen/_15sdp"
@@ -89,7 +89,7 @@
 
 
             <TextView
-                android:id="@+id/password_textview1"
+                android:id="@+id/password_textview"
                 android:text="Password"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
-                android:id="@+id/password_edittext1"
+                android:id="@+id/password_edittext"
                 android:hint="Enter Password"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:textSize="@dimen/_15sdp"
@@ -118,7 +118,7 @@
                 android:layout_height="@dimen/_40sdp" />
 
             <TextView
-                android:id="@+id/confirmpassword_textview1"
+                android:id="@+id/confirmpassword_textview"
                 android:text="Confirm Password"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content" />
 
             <EditText
-                android:id="@+id/confirmpassword_edittext1"
+                android:id="@+id/confirmpassword_edittext"
                 android:hint="Confirm Your Password"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:textSize="@dimen/_15sdp"
