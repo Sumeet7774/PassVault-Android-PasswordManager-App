@@ -78,7 +78,7 @@
                 android:background="@drawable/custom_round_button"
                 android:text="LOGIN"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_20sdp"
+                android:textSize="@dimen/_18sdp"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
@@ -89,7 +89,7 @@
                 android:background="@drawable/custom_round_button"
                 android:text="SIGN UP"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_20sdp"
+                android:textSize="@dimen/_18sdp"
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
         </LinearLayout>
