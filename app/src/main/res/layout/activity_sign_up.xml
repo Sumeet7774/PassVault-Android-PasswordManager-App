@@ -16,7 +16,7 @@
             android:id="@+id/signupPage_backButton"
             android:background="@drawable/baseline_arrow_back_ios_new_24"
             android:layout_marginTop="@dimen/_18sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginStart="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
