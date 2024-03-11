@@ -17,7 +17,6 @@ public class HomePage extends AppCompatActivity {
     private BottomNavigationView bottom_navigation_view;
     private FrameLayout frame_layout;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,39 +25,45 @@ public class HomePage extends AppCompatActivity {
         bottom_navigation_view = findViewById(R.id.bottomNavView);
         frame_layout = findViewById(R.id.frameLayout);
 
+        // Load HomeFragment by default when activity is initialized
+        loadFragment(new HomeFragment(), true);
+
         bottom_navigation_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
 
                 int itemId = menuItem.getItemId();
 
-                if(itemId == R.id.navHome)
-                {
-                    loadFragment(new HomeFragment(), false);
+                if(itemId == R.id.navHome) {
+
+                    // If HomeFragment is already displayed, do nothing
+                    if(!(getCurrentFragment() instanceof HomeFragment))
+                    {
+                        loadFragment(new HomeFragment(), false);
+                    }
                 }
                 else if(itemId == R.id.navSearch)
                 {
                     loadFragment(new SearchFragment(), false);
                 }
-                else // navProfile
-                {
+                else
+                { // navProfile
                     loadFragment(new ProfileFragment(), false);
                 }
-
-                loadFragment(new HomeFragment(), true);
 
                 return true;
             }
         });
     }
 
-    private void loadFragment(Fragment fragment, boolean isAppInitialized)
-    {
+    // Function to load fragment
+    private void loadFragment(Fragment fragment, boolean isAppInitialized) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        if(isAppInitialized)
+        if(isAppInitialized && fragmentManager.findFragmentById(R.id.frameLayout) == null)
         {
+            // Add HomeFragment only if it's not already added
             fragmentTransaction.add(R.id.frameLayout, fragment);
         }
         else
@@ -67,5 +72,10 @@ public class HomePage extends AppCompatActivity {
         }
 
         fragmentTransaction.commit();
+    }
+
+    // Function to get the current fragment displayed
+    private Fragment getCurrentFragment() {
+        return getSupportFragmentManager().findFragmentById(R.id.frameLayout);
     }
 }
