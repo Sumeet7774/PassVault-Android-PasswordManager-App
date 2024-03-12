@@ -46,9 +46,13 @@ public class HomePage extends AppCompatActivity {
                 {
                     loadFragment(new SearchFragment(), false);
                 }
-                else
+                else if(itemId == R.id.navProfile)
                 { // navProfile
                     loadFragment(new ProfileFragment(), false);
+                }
+                else
+                {
+                    loadFragment(new SettingsFragment(), false);
                 }
 
                 return true;
