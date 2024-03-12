@@ -20,7 +20,6 @@ public class IndexPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_index_page);
 
-
         sign_up = findViewById(R.id.signup_Button);
         log_in = findViewById(R.id.login_Button);
 
@@ -29,6 +28,7 @@ public class IndexPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent =  new Intent(IndexPage.this, SignUp.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -37,7 +37,7 @@ public class IndexPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(IndexPage.this, LoginPage.class);
                 startActivity(intent);
-
+                finish();
             }
         });
 
