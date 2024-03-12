@@ -6,5 +6,10 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="RoundedShape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
     <style name="Theme.PassVault" parent="Base.Theme.PassVault" />
 </resources>

@@ -27,9 +27,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildFeatures {
-        viewBinding true
-    }
 }
 
 dependencies {
@@ -44,4 +41,5 @@ dependencies {
 
     implementation libs.lottie
     implementation libs.sdp.android
+    implementation libs.material.v170
 }
