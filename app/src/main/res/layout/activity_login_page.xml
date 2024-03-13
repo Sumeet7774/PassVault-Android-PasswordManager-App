@@ -58,27 +58,26 @@
             android:padding="@dimen/_25sdp">
 
             <TextView
-                android:id="@+id/username_login_textview"
-                android:text="Username"
+                android:id="@+id/email_login_textview"
+                android:text="Email"
                 android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
+                android:layout_marginTop="@dimen/_2sdp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-
             <EditText
-                android:id="@+id/username_login_edittext"
-                android:hint="Enter Username"
+                android:id="@+id/email_login_edittext"
+                android:hint="Enter Email"
                 android:layout_marginTop="@dimen/_1sdp"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold"
-                android:maxLength="10"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/cardview_dark_background"
-                android:inputType="text"
-                android:drawableStart="@drawable/baseline_account_circle_24"
+                android:inputType="textEmailAddress"
+                android:drawableStart="@drawable/baseline_email_24"
                 android:drawablePadding="@dimen/_5sdp"
                 android:padding="@dimen/_5sdp"
                 android:background="@drawable/custom_edittext"
