@@ -31,7 +31,7 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginPage.this, ForgotPasswordPage.class);
                 startActivity(intent);
-                finish();
+
             }
         });
 
@@ -40,7 +40,7 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginPage.this, HomePage.class);
                 startActivity(intent);
-                finish();
+
             }
         });
     }

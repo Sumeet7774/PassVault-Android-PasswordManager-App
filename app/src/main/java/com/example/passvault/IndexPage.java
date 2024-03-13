@@ -28,7 +28,6 @@ public class IndexPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent =  new Intent(IndexPage.this, SignUp.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -37,7 +36,6 @@ public class IndexPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(IndexPage.this, LoginPage.class);
                 startActivity(intent);
-                finish();
             }
         });
 
