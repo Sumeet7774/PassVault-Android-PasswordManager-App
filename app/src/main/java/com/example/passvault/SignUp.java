@@ -2,6 +2,7 @@ package com.example.passvault;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,6 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
 
         sign_up = findViewById(R.id.signupButton);
-
 
     }
 }

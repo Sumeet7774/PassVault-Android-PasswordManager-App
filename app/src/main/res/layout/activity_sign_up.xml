@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:background="#DECDF8"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignUp">
@@ -34,7 +36,6 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"/>
     </LinearLayout>
-
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
