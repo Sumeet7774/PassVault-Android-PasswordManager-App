@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -15,8 +16,9 @@ import androidx.core.view.WindowInsetsCompat;
 
 public class LoginPage extends AppCompatActivity {
 
-    TextView forgot_password;
-    Button loginButton;
+    private TextView forgot_password;
+    private Button loginButton;
+    private ImageButton login_back_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,7 @@ public class LoginPage extends AppCompatActivity {
 
         forgot_password = findViewById(R.id.forgotPassword_textview);
         loginButton = findViewById(R.id.login_Button);
+        login_back_button = findViewById(R.id.loginPage_backButton);
 
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +44,15 @@ public class LoginPage extends AppCompatActivity {
                 Intent intent = new Intent(LoginPage.this, HomePage.class);
                 startActivity(intent);
 
+            }
+        });
+
+        login_back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginPage.this, IndexPage.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
