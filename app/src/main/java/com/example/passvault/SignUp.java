@@ -32,6 +32,16 @@ public class SignUp extends AppCompatActivity {
         confirm_password_edit_text = findViewById(R.id.confirmpassword_signup_edittext);
 
 
+        signup_back_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SignUp.this, IndexPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
