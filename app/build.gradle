@@ -44,5 +44,6 @@ dependencies {
     implementation libs.sdp.android
     implementation libs.material.v170
 
-    implementation libs.mysql.connector.java
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation files('libs/mysql-connector-j-8.3.0.jar')
 }
