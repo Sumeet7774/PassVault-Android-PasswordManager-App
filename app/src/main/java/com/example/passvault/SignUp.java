@@ -17,8 +17,7 @@ public class SignUp extends AppCompatActivity {
 
     private Button sign_up;
     private ImageButton signup_back_button;
-    private EditText email_edit_text, password_edit_text, confirm_password_edit_text;
-
+    private EditText username_edit_text,email_edit_text, password_edit_text, confirm_password_edit_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +26,7 @@ public class SignUp extends AppCompatActivity {
 
         sign_up = findViewById(R.id.signupButton);
         signup_back_button = findViewById(R.id.signupPage_backButton);
+        username_edit_text = findViewById(R.id.username_signup_edittext);
         email_edit_text = findViewById(R.id.email_signup_edittext);
         password_edit_text = findViewById(R.id.password_signup_edittext);
         confirm_password_edit_text = findViewById(R.id.confirmpassword_signup_edittext);
@@ -44,11 +44,12 @@ public class SignUp extends AppCompatActivity {
         sign_up.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String txt_username = username_edit_text.getText().toString();
                 String txt_email = email_edit_text.getText().toString();
                 String txt_password = password_edit_text.getText().toString();
                 String txt_confirm_password = confirm_password_edit_text.getText().toString();
 
-                if( TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_confirm_password))
+                if(TextUtils.isEmpty(txt_username) ||TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_confirm_password))
                 {
                     Toast.makeText(SignUp.this, "Please provide your credentials", Toast.LENGTH_SHORT).show();
                 }
