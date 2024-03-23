@@ -1,8 +1,10 @@
 package com.example.passvault;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +15,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
 
@@ -67,9 +77,72 @@ public class SignUp extends AppCompatActivity {
                 }
                 else
                 {
-                    //registerUser(txt_email, txt_password);
+                    registerUser(txt_username,txt_email, txt_password);
                 }
             }
         });
+    }
+
+    public void registerUser(String username, String email, String password)
+    {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiEndpoints.register_url, response -> {
+
+            if (response.equals("success")) {
+                showRegistrationSuccessDialog();
+            } else {
+                showUnsuccesfulRegistrationDialog();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Toast.makeText(SignUp.this, "Please check your internet connection", Toast.LENGTH_SHORT).show();
+                Log.d("VOLLEY", volleyError.getMessage());
+                Intent intent = new Intent(SignUp.this, SignUp.class);
+                startActivity(intent);
+            }
+        }) {
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<>();
+                params.put("username", username);
+                params.put("email", email);
+                params.put("password", password);
+
+                return params;
+            }
+        };
+        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
+    }
+
+    private void showRegistrationSuccessDialog()
+    {
+        Dialog successful_registration_dialogBox = new Dialog(SignUp.this);
+        successful_registration_dialogBox.setContentView(R.layout.custom_registration_successfull_dialog_box);
+        Button dialogBox_ok_button = successful_registration_dialogBox.findViewById(R.id.okButtonSuccesfull_dialogBox);
+        dialogBox_ok_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                successful_registration_dialogBox.dismiss();
+                Intent intent = new Intent(SignUp.this, IndexPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        successful_registration_dialogBox.show();
+    }
+
+    private void showUnsuccesfulRegistrationDialog()
+    {
+        Dialog unsuccessful_registration_dialogBox = new Dialog(SignUp.this);
+        unsuccessful_registration_dialogBox.setContentView(R.layout.custom_registration_unsuccessfull_dialog_box);
+        Button dialogBox_ok_unsuccessful_button = unsuccessful_registration_dialogBox.findViewById(R.id.okButton_Unsuccessfull_dialogBox);
+        dialogBox_ok_unsuccessful_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                unsuccessful_registration_dialogBox.dismiss();
+            }
+        });
+        unsuccessful_registration_dialogBox.show();
     }
 }
