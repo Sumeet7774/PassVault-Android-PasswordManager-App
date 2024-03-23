@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -30,7 +31,6 @@ public class SignUp extends AppCompatActivity {
         email_edit_text = findViewById(R.id.email_signup_edittext);
         password_edit_text = findViewById(R.id.password_signup_edittext);
         confirm_password_edit_text = findViewById(R.id.confirmpassword_signup_edittext);
-
 
         signup_back_button.setOnClickListener(new View.OnClickListener() {
             @Override
