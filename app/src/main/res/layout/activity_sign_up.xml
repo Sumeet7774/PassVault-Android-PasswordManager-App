@@ -72,6 +72,7 @@
                 android:id="@+id/username_signup_edittext"
                 android:hint="Enter Username"
                 android:layout_marginTop="@dimen/_1sdp"
+                android:maxLength="10"
                 android:textSize="@dimen/_15sdp"
                 android:textStyle="bold"
                 android:textColor="@color/black"
