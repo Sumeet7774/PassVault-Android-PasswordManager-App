@@ -2,8 +2,9 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    app:cardElevation="@dimen/_30sdp"
+    app:cardElevation="0dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@android:color/transparent"
     app:cardCornerRadius="@dimen/_30sdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,7 +15,7 @@
             android:id="@+id/registrationUnsuccessful_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Registration Successfull"
+            android:text="Registration Unsuccessfull"
             android:textStyle="bold"
             android:textSize="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_30sdp"
