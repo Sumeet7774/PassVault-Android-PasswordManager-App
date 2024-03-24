@@ -104,7 +104,7 @@ public class SignUp extends AppCompatActivity {
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<>();
                 params.put("username", username);
-                params.put("email", email);
+                params.put("email_id", email);
                 params.put("password", password);
 
                 return params;
