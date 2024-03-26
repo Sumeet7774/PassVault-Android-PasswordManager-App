@@ -26,7 +26,7 @@ public class PasswordforgotPage extends AppCompatActivity {
         setContentView(R.layout.activity_passwordforgot_page);
 
         forgot_password_back_button = findViewById(R.id.forgot_password_backButton);
-        email_reset_edittext = findViewById(R.id.forgotPassword_email_edittext);
+        email_reset_edittext = findViewById(R.id.sendEmail_edittext);
         send_email = findViewById(R.id.resetPassword_email_Button);
 
         forgot_password_back_button.setOnClickListener(new View.OnClickListener() {
