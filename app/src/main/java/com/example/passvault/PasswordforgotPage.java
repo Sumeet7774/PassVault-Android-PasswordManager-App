@@ -16,8 +16,8 @@ import androidx.core.view.WindowInsetsCompat;
 public class PasswordforgotPage extends AppCompatActivity {
 
     private ImageButton forgot_password_back_button;
-    //private Button send_email;
-    //private EditText email_reset_edittext;
+    private Button send_email;
+    private EditText email_reset_edittext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +26,8 @@ public class PasswordforgotPage extends AppCompatActivity {
         setContentView(R.layout.activity_passwordforgot_page);
 
         forgot_password_back_button = findViewById(R.id.forgot_password_backButton);
-        //send_email = findViewById(R.id.emailSendLink_button);
-        //email_reset_edittext = findViewById(R.id.emailReset_edittext);
+        email_reset_edittext = findViewById(R.id.forgotPassword_email_edittext);
+        send_email = findViewById(R.id.resetPassword_email_Button);
 
         forgot_password_back_button.setOnClickListener(new View.OnClickListener() {
             @Override
