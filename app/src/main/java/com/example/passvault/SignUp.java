@@ -1,5 +1,6 @@
 package com.example.passvault;
 
+
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ public class SignUp extends AppCompatActivity {
 
     private Button sign_up;
     private ImageButton signup_back_button;
-    private EditText username_edit_text,email_edit_text, password_edit_text, confirm_password_edit_text;
+    private EditText username_edit_text, password_edit_text, confirm_password_edit_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,6 @@ public class SignUp extends AppCompatActivity {
         sign_up = findViewById(R.id.signupButton);
         signup_back_button = findViewById(R.id.signupPage_backButton);
         username_edit_text = findViewById(R.id.username_signup_edittext);
-        email_edit_text = findViewById(R.id.email_signup_edittext);
         password_edit_text = findViewById(R.id.password_signup_edittext);
         confirm_password_edit_text = findViewById(R.id.confirmpassword_signup_edittext);
 
@@ -55,17 +55,12 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String txt_username = username_edit_text.getText().toString();
-                String txt_email = email_edit_text.getText().toString();
                 String txt_password = password_edit_text.getText().toString();
                 String txt_confirm_password = confirm_password_edit_text.getText().toString();
 
-                if(TextUtils.isEmpty(txt_username) ||TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_confirm_password))
+                if(TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_confirm_password))
                 {
                     Toast.makeText(SignUp.this, "Please provide your credentials", Toast.LENGTH_SHORT).show();
-                }
-                else if(!TextUtils.isEmpty(txt_email) && !Patterns.EMAIL_ADDRESS.matcher(txt_email).matches())
-                {
-                    Toast.makeText(SignUp.this, "Invalid Email", Toast.LENGTH_SHORT).show();
                 }
                 else if( txt_password.length() < 5 || txt_confirm_password.length() < 5)
                 {
@@ -77,17 +72,17 @@ public class SignUp extends AppCompatActivity {
                 }
                 else
                 {
-                    registerUser(txt_username,txt_email, txt_password);
+                    registerUser(txt_username, txt_password);
                 }
             }
         });
     }
 
-    public void registerUser(String username, String email, String password)
+    public void registerUser(final String username,final String password)
     {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiEndpoints.register_url, response -> {
 
-            if (response.equals("success")) {
+            if (response.contains("success")) {
                 showRegistrationSuccessDialog();
             } else {
                 showUnsuccesfulRegistrationDialog();
@@ -104,7 +99,6 @@ public class SignUp extends AppCompatActivity {
             protected Map<String,String> getParams(){
                 Map<String,String> params = new HashMap<>();
                 params.put("username", username);
-                params.put("email_id", email);
                 params.put("password", password);
 
                 return params;
