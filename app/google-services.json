@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "122828076919",
-    "project_id": "pass-vault-11c18",
-    "storage_bucket": "pass-vault-11c18.appspot.com"
+    "project_number": "1060667116438",
+    "project_id": "pass-vault-4a817",
+    "storage_bucket": "pass-vault-4a817.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:122828076919:android:8cb9a0cce01d276a6e5372",
+        "mobilesdk_app_id": "1:1060667116438:android:f2b675a7f69dda2864abb7",
         "android_client_info": {
           "package_name": "com.example.passvault"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCVtfAbqCy7RZTEuZ6AHcIUPP-lO11hz-M"
+          "current_key": "AIzaSyCgyT0X8qOnftznEDbBQzEd_3NFKO1qiZ4"
         }
       ],
       "services": {

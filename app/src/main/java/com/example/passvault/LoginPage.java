@@ -85,7 +85,7 @@ public class LoginPage extends AppCompatActivity {
                 }
                 else
                 {
-                    signinUser(txt_emailid,txt_pass_word);
+                    loginUser(txt_emailid,txt_pass_word);
                 }
             }
         });
@@ -96,7 +96,7 @@ public class LoginPage extends AppCompatActivity {
         return (!TextUtils.isEmpty(target) && Patterns.EMAIL_ADDRESS.matcher(target).matches());
     }
 
-    public void signinUser(final String emailid, final String password)
+    public void loginUser(final String emailid, final String password)
     {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiEndpoints.login_url, response -> {
 
