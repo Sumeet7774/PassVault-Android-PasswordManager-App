@@ -100,9 +100,19 @@ public class LoginPage extends AppCompatActivity {
     {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiEndpoints.login_url, response -> {
 
-            if (response.contains("success")) {
+            if (response.contains("success"))
+            {
                 showLoginSuccessDialog();
-            } else {
+            }
+            else if(response.contains("Invalid Password"))
+            {
+                Toast.makeText(LoginPage.this, "Invalid Password", Toast.LENGTH_SHORT).show();
+            }
+            else if(response.contains("User Doesnt Exist"))
+            {
+                Toast.makeText(LoginPage.this, "User Doesn't Exist", Toast.LENGTH_SHORT).show();
+            }
+            else {
                 showUnsuccesfulLoginDialog();
             }
         }, new Response.ErrorListener() {

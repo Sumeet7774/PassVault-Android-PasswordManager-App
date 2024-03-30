@@ -15,7 +15,7 @@
             android:id="@+id/loginSuccessful_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login Successfull"
+            android:text="Login Successful"
             android:textStyle="bold"
             android:textSize="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_30sdp"

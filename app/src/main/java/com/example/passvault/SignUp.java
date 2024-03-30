@@ -91,9 +91,16 @@ public class SignUp extends AppCompatActivity {
     {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiEndpoints.register_url, response -> {
 
-            if (response.contains("success")) {
+            if (response.contains("success"))
+            {
                 showRegistrationSuccessDialog();
-            } else {
+            }
+            else if(response.contains("User Email Already Exists! Login Here"))
+            {
+                Toast.makeText(SignUp.this, "User Already Exists", Toast.LENGTH_SHORT).show();
+            }
+            else
+            {
                 showUnsuccesfulRegistrationDialog();
             }
         }, new Response.ErrorListener() {
