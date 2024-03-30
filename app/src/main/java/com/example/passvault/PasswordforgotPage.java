@@ -56,6 +56,7 @@ public class PasswordforgotPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(PasswordforgotPage.this, LoginPage.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 finish();
             }
         });
@@ -149,6 +150,7 @@ public class PasswordforgotPage extends AppCompatActivity {
                 successful_password_updated_dialogBox.dismiss();
                 Intent intent = new Intent(PasswordforgotPage.this, IndexPage.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 finish();
             }
         });

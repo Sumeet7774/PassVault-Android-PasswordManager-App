@@ -47,6 +47,7 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginPage.this, PasswordforgotPage.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
             }
         });
@@ -56,6 +57,7 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(LoginPage.this, IndexPage.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 finish();
             }
         });
@@ -147,6 +149,7 @@ public class LoginPage extends AppCompatActivity {
                 successful_login_dialogBox.dismiss();
                 Intent intent = new Intent(LoginPage.this, LoadingSplashScreen.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
             }
         });

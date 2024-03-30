@@ -46,6 +46,7 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(SignUp.this, IndexPage.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 finish();
             }
         });
@@ -136,6 +137,7 @@ public class SignUp extends AppCompatActivity {
                 successful_registration_dialogBox.dismiss();
                 Intent intent = new Intent(SignUp.this, IndexPage.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 finish();
             }
         });
