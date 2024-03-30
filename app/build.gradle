@@ -49,5 +49,5 @@ dependencies {
 
     implementation libs.volley
 
-    implementation libs.firebase.bom
+    implementation platform(libs.firebase.bom)
 }
