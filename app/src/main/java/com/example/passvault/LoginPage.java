@@ -25,6 +25,7 @@ import java.util.Map;
 
 public class LoginPage extends AppCompatActivity {
 
+    SessionManagement sessionManagement;
     private TextView forgot_password;
     private Button loginButton;
     private ImageButton login_back_button;
@@ -41,6 +42,8 @@ public class LoginPage extends AppCompatActivity {
         email_edittext = findViewById(R.id.email_login_edittext);
         password_edittext = findViewById(R.id.password_login_edittext);
         confirm_password_edittext = findViewById(R.id.confirmpassword_login_edittext);
+
+        sessionManagement = new SessionManagement(getApplication());
 
         forgot_password.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +107,9 @@ public class LoginPage extends AppCompatActivity {
 
             if (response.contains("success"))
             {
-                showLoginSuccessDialog();
+                // Storing email ID in session after successful login
+                sessionManagement.setEmailid(emailid);
+                showLoginSuccessDialog(emailid);
             }
             else if(response.contains("Invalid Password"))
             {
@@ -137,7 +142,7 @@ public class LoginPage extends AppCompatActivity {
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
 
-    private void showLoginSuccessDialog()
+    private void showLoginSuccessDialog(final String emailid)
     {
         Dialog successful_login_dialogBox = new Dialog(LoginPage.this);
         successful_login_dialogBox.setContentView(R.layout.custom_login_successfull_dialog_box);

@@ -49,5 +49,7 @@ dependencies {
 
     implementation libs.volley
 
+    implementation libs.material.v150
+
     implementation platform(libs.firebase.bom)
 }

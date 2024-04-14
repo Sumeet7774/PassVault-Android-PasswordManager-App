@@ -25,6 +25,7 @@ import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
 
+    SessionManagement sessionManagement;
     private Button sign_up;
     private ImageButton signup_back_button;
     private EditText username_edit_text, email_edit_text, password_edit_text, confirm_password_edit_text;
@@ -40,6 +41,8 @@ public class SignUp extends AppCompatActivity {
         email_edit_text = findViewById(R.id.email_signup_edittext);
         password_edit_text = findViewById(R.id.password_signup_edittext);
         confirm_password_edit_text = findViewById(R.id.confirmpassword_signup_edittext);
+
+        sessionManagement = new SessionManagement(getApplication());
 
         signup_back_button.setOnClickListener(new View.OnClickListener() {
             @Override

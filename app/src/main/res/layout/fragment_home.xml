@@ -6,6 +6,7 @@
     tools:context=".HomeFragment">
 
     <TextView
+        android:id="@+id/homeFragment_textview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="@dimen/_20sdp"
