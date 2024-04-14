@@ -17,16 +17,25 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         sessionManagement = new SessionManagement(getApplicationContext());
+    }
 
-        // Check if the user is already logged in
-        if (!sessionManagement.getEmailid().isEmpty())
-        {
-            // User is logged in, navigate to HomePage
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // Delayed navigation to next screen using a Handler
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                navigateToNextScreen();
+            }
+        }, SPLASH_DURATION);
+    }
+
+    private void navigateToNextScreen() {
+        if (!sessionManagement.getEmailid().isEmpty()) {
             navigateToHomePage();
-        }
-        else
-        {
-            // No session, navigate to IndexPage for login/signup
+        } else {
             navigateToIndexPage();
         }
     }
@@ -43,22 +52,5 @@ public class SplashScreen extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         finish(); // Finish this activity so user cannot come back to splash screen
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        // Delayed navigation to next screen using a Handler
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                if (!sessionManagement.getEmailid().isEmpty()) {
-                    navigateToHomePage();
-                } else {
-                    navigateToIndexPage();
-                }
-            }
-        }, SPLASH_DURATION);
     }
 }
