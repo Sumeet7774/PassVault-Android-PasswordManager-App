@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Pass Vault</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="about_us_description">This is a brief description of our team.</string>
+    <string name="about_us_description">Welcome to PassVault, your secure password manager designed to keep your digital life safe and organized.</string>
 </resources>
