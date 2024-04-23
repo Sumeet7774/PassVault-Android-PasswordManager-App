@@ -66,6 +66,11 @@ public class AddDataPage extends AppCompatActivity {
                 String txt_password = password_add_edittext.getText().toString();
                 String txt_servicetype = serviceType_add_edittext.getText().toString();
 
+                Log.d("AddDataPage", "Username: " + txt_username);
+                Log.d("AddDataPage", "Email ID: " + txt_emailid);
+                Log.d("AddDataPage", "Password: " + txt_password);
+                Log.d("AddDataPage", "Service Type: " + txt_servicetype);
+
                 if(TextUtils.isEmpty(txt_username) || TextUtils.isEmpty(txt_emailid) || TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_servicetype))
                 {
                     Toast.makeText(AddDataPage.this, "Please provide your credentials", Toast.LENGTH_SHORT).show();
@@ -95,9 +100,21 @@ public class AddDataPage extends AppCompatActivity {
     {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiEndpoints.insertData_url, response -> {
 
-            if(response.contains("success"))
+            if(response.contains("Data inserted successfully"))
             {
                 showDataSavedSuccessDialogBox(username,email_id,password,service_type);
+            }
+            else if(response.contains("Error inserting data: "))
+            {
+                Toast.makeText(AddDataPage.this,"Error", Toast.LENGTH_SHORT).show();
+            }
+            else if(response.contains("Invalid Password"))
+            {
+                Toast.makeText(AddDataPage.this,"Invalid", Toast.LENGTH_SHORT).show();
+            }
+            else if(response.contains("User Doesn't Exist"))
+            {
+                Toast.makeText(AddDataPage.this,"User not found", Toast.LENGTH_SHORT).show();
             }
             else
             {
