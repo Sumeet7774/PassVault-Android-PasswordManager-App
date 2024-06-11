@@ -114,7 +114,7 @@ public class AddDataPage extends AppCompatActivity {
             }
             else if(response.contains("User Doesn't Exist"))
             {
-                Toast.makeText(AddDataPage.this,"User not found", Toast.LENGTH_SHORT).show();
+               Toast.makeText(AddDataPage.this,"User not found", Toast.LENGTH_SHORT).show();
             }
             else
             {
