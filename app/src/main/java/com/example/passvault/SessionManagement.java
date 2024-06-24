@@ -12,6 +12,14 @@ public class SessionManagement {
         prefs = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
     }
 
+    public String getUserId() {
+        return prefs.getString("user_id","");
+    }
+
+    public void setUserId(String userid){
+        prefs.edit().putString("user_id",userid).apply();
+    }
+
     public void setEmailid(String emailid) {
         prefs.edit().putString("email_id", emailid).apply();
     }
@@ -23,5 +31,6 @@ public class SessionManagement {
     public void logout()
     {
         prefs.edit().remove("email_id").apply();
+        prefs.edit().remove("user_id").apply();
     }
 }

@@ -6,4 +6,5 @@ public class ApiEndpoints {
     public static final String login_url = base_url + "login.php";
     public static final String updatePassword_url = base_url + "update_password.php";
     public static final String insertData_url = base_url + "insert_data.php";
+    public static final String retrieveUserId_url = base_url + "get_user_id.php";
 }
