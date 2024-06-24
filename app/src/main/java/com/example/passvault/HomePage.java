@@ -26,7 +26,6 @@ public class HomePage extends AppCompatActivity {
     private TextView home_fragment_textview;
     private FloatingActionButton floatingAddButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
