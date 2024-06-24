@@ -24,6 +24,8 @@ public class HomePage extends AppCompatActivity {
     private SessionManagement sessionManaagement;
     private FloatingActionButton add_data_button;
     private TextView home_fragment_textview;
+    private FloatingActionButton floatingAddButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,8 @@ public class HomePage extends AppCompatActivity {
         frame_layout = findViewById(R.id.frameLayout);
         add_data_button = findViewById(R.id.floatingAddButton);
         //home_fragment_textview = findViewById(R.id.home_textview);
+        floatingAddButton = findViewById(R.id.floatingAddButton);
+        BottomNavigationView bottomNavView = findViewById(R.id.bottomNavView);
 
         sessionManagement = new SessionManagement(getApplicationContext());
 
@@ -112,10 +116,20 @@ public class HomePage extends AppCompatActivity {
         }
 
         fragmentTransaction.commit();
+
+        manageFloatingButtonVisibility(fragment);
     }
 
     // Function to get the current fragment displayed
     private Fragment getCurrentFragment() {
         return getSupportFragmentManager().findFragmentById(R.id.frameLayout);
+    }
+
+    private void manageFloatingButtonVisibility(Fragment fragment) {
+        if (fragment instanceof HomeFragment) {
+            floatingAddButton.show();
+        } else {
+            floatingAddButton.hide();
+        }
     }
 }
