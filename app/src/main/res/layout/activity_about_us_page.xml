@@ -64,30 +64,31 @@
         android:layout_marginEnd="@dimen/_16sdp"
         android:layout_marginTop="@dimen/_16sdp">
 
-        <TextView
-            android:id="@+id/tarj_member1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="22BCP430 Tarj Baxi"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="@color/black"
-            android:drawablePadding="@dimen/_8sdp"
-            android:drawableStart="@drawable/baseline_account_circle_24"
-            android:padding="@dimen/_8sdp"
-            android:gravity="center_vertical" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp" />
 
         <TextView
-            android:id="@+id/tarj_linkedin"
-            android:layout_width="wrap_content"
+            android:id="@+id/ownerOfapp_description"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="LinkedIn: Connect with Tarj Baxi"
-            android:textSize="@dimen/_12sdp"
+            android:text="@string/owner_description"
+            android:textSize="@dimen/_15sdp"
             android:textColor="@color/black"
-            android:padding="@dimen/_3sdp"
-            android:layout_marginStart="@dimen/_2sdp"
-            android:drawablePadding="@dimen/_8sdp"
-            android:drawableStart="@drawable/linkedin_svg"
-            android:gravity="center_vertical" />
+            android:layout_below="@id/aboutus_title"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_10sdp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp" />
 
         <View
             android:layout_width="match_parent"
@@ -97,42 +98,10 @@
             android:layout_marginBottom="@dimen/_8sdp" />
 
         <TextView
-            android:id="@+id/rajdeep_member2"
+            android:id="@+id/sumeet_member"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="22BCP471D Rajdeep Dharajiya"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="@color/black"
-            android:drawablePadding="@dimen/_8sdp"
-            android:drawableStart="@drawable/baseline_account_circle_24"
-            android:padding="@dimen/_8sdp"
-            android:gravity="center_vertical" />
-
-        <TextView
-            android:id="@+id/rajdeep_linkedin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LinkedIn: Connect with Rajdeep Dharajiya"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="@color/black"
-            android:padding="@dimen/_3sdp"
-            android:layout_marginStart="@dimen/_2sdp"
-            android:drawablePadding="@dimen/_8sdp"
-            android:drawableStart="@drawable/linkedin_svg"
-            android:gravity="center_vertical" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_8sdp" />
-
-        <TextView
-            android:id="@+id/sumeet_member3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="22BCP474D Sumeet Kapadia"
+            android:text="Sumeet Kapadia"
             android:textSize="@dimen/_12sdp"
             android:textColor="@color/black"
             android:drawablePadding="@dimen/_8sdp"
@@ -145,38 +114,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="LinkedIn: Connect with Sumeet Kapadia"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="@color/black"
-            android:padding="@dimen/_3sdp"
-            android:layout_marginStart="@dimen/_2sdp"
-            android:drawablePadding="@dimen/_8sdp"
-            android:drawableStart="@drawable/linkedin_svg"
-            android:gravity="center_vertical" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:background="@android:color/darker_gray"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:layout_marginBottom="@dimen/_8sdp" />
-
-        <TextView
-            android:id="@+id/darsh_member4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="22BCP484D Darsh Panchal"
-            android:textSize="@dimen/_12sdp"
-            android:textColor="@color/black"
-            android:drawablePadding="@dimen/_8sdp"
-            android:drawableStart="@drawable/baseline_account_circle_24"
-            android:padding="@dimen/_8sdp"
-            android:gravity="center_vertical" />
-
-        <TextView
-            android:id="@+id/darsh_linkedin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LinkedIn: Connect with Darsh Panchal"
             android:textSize="@dimen/_12sdp"
             android:textColor="@color/black"
             android:padding="@dimen/_3sdp"

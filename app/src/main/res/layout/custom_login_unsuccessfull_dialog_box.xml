@@ -15,7 +15,7 @@
             android:id="@+id/loginUnuccessful_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login Unsuccessful"
+            android:text="Login Unsuccessfull"
             android:textStyle="bold"
             android:textSize="@dimen/_25sdp"
             android:layout_marginTop="@dimen/_30sdp"
@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/loginFailed_textview"
-            android:text="We regret to inform you that the login attempt was unsuccessful."
+            android:text="We regret to inform you that the login attempt was unsuccessfull."
             android:textColor="#526D82"
             android:layout_marginTop="@dimen/_10sdp"
             android:layout_marginStart="@dimen/_10sdp"
