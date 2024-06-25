@@ -4,8 +4,11 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -55,6 +58,34 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 
+            }
+        });
+
+        password_edittext.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (password_edittext.getRight() - password_edittext.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        togglePasswordVisibility(password_edittext);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+        confirm_password_edittext.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                final int DRAWABLE_RIGHT = 2;
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (event.getRawX() >= (confirm_password_edittext.getRight() - confirm_password_edittext.getCompoundDrawables()[DRAWABLE_RIGHT].getBounds().width())) {
+                        togglePasswordVisibility(confirm_password_edittext);
+                        return true;
+                    }
+                }
+                return false;
             }
         });
 
@@ -144,6 +175,25 @@ public class LoginPage extends AppCompatActivity {
         };
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
+
+    private void togglePasswordVisibility(EditText editText) {
+        if (editText.getTransformationMethod().equals(PasswordTransformationMethod.getInstance())) {
+            // Show Password
+            editText.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            setCompoundDrawablesWithIntrinsicBounds(editText, R.drawable.baseline_lock_outline_24, R.drawable.eye_invisible);
+        } else {
+            // Hide Password
+            editText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+            setCompoundDrawablesWithIntrinsicBounds(editText, R.drawable.baseline_lock_outline_24, R.drawable.eye_visible);
+        }
+        editText.setSelection(editText.getText().length());
+    }
+
+    private void setCompoundDrawablesWithIntrinsicBounds(EditText editText, int start, int end) {
+        editText.setCompoundDrawablesWithIntrinsicBounds(start, 0, end, 0);
+        editText.setCompoundDrawablePadding(16); // Adjust padding as needed
+    }
+
 
     private void showLoginSuccessDialog(final String emailid)
     {
