@@ -212,4 +212,10 @@ public class HomeFragment extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(request);
     }
+
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Clear animations when view is destroyed to prevent leaks
+        recyclerView.setItemAnimator(null);
+    }
 }

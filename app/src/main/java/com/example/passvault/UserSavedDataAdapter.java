@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +19,7 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
 
     Context context;
     ArrayList<UserSavedData> arrayList = new ArrayList<>();
+    private int lastPosition = -1;
 
     public UserSavedDataAdapter(Context context, ArrayList<UserSavedData> arrayList) {
         this.context = context;
@@ -35,17 +38,34 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
     @Override
     public void onBindViewHolder(@NonNull UsersSavedDataHolder holder, int position) {
 
+        UserSavedData data = arrayList.get(position);
+
         holder.username.setText(arrayList.get(position).getUsername());
         //holder.emailid.setText(arrayList.get(position).getEmailId());
         //holder.password.setText(arrayList.get(position).getpassword());
         holder.serviceType.setText(arrayList.get(position).getServiceType());
 
+        setAnimation(holder.itemView, position);
 
     }
 
     @Override
     public int getItemCount() {
         return arrayList.size();
+    }
+
+    private void setAnimation(View viewToAnimate, int position) {
+        if (position > lastPosition) {
+            Animation animation = AnimationUtils.loadAnimation(context, android.R.anim.slide_in_left);
+            viewToAnimate.startAnimation(animation);
+            lastPosition = position;
+        }
+    }
+
+    public void clear() {
+        int size = arrayList.size();
+        arrayList.clear();
+        notifyItemRangeRemoved(0, size);
     }
 
     public class UsersSavedDataHolder extends RecyclerView.ViewHolder {
