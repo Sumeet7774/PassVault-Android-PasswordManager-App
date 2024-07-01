@@ -20,10 +20,16 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
     Context context;
     ArrayList<UserSavedData> arrayList = new ArrayList<>();
     private int lastPosition = -1;
+    private OnItemClickListener listener;
 
-    public UserSavedDataAdapter(Context context, ArrayList<UserSavedData> arrayList) {
+    public UserSavedDataAdapter(Context context, ArrayList<UserSavedData> arrayList, OnItemClickListener listener) {
         this.context = context;
         this.arrayList = arrayList;
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(UserSavedData userSavedData);
     }
 
     @NonNull
@@ -40,13 +46,17 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
 
         UserSavedData data = arrayList.get(position);
 
-        holder.username.setText(arrayList.get(position).getUsername());
+        //holder.username.setText(arrayList.get(position).getUsername());
         //holder.emailid.setText(arrayList.get(position).getEmailId());
         //holder.password.setText(arrayList.get(position).getpassword());
-        holder.serviceType.setText(arrayList.get(position).getServiceType());
+        //holder.serviceType.setText(arrayList.get(position).getServiceType());
+
+        holder.username.setText(data.getUsername());
+        holder.serviceType.setText(data.getServiceType());
 
         setAnimation(holder.itemView, position);
 
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(data));
     }
 
     @Override
@@ -82,6 +92,4 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
             serviceType = itemView.findViewById(R.id.cardviewServiceType_textview);
         }
     }
-
-
 }

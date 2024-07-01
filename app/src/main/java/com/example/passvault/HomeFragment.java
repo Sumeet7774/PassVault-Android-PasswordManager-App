@@ -55,7 +55,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //userSavedDataAdapter = new UserSavedDataAdapter(HomeFragment.this,arrayList);
-        userSavedDataAdapter = new UserSavedDataAdapter(getContext(), arrayList);
+        userSavedDataAdapter = new UserSavedDataAdapter(getContext(), arrayList, this::showUserDetails);
         recyclerView.setAdapter(userSavedDataAdapter);
 
         sessionManagement = new SessionManagement(getContext());
@@ -212,6 +212,31 @@ public class HomeFragment extends Fragment {
         RequestQueue requestQueue = Volley.newRequestQueue(getContext());
         requestQueue.add(request);
     }
+
+    private void showUserDetails(UserSavedData userSavedData) {
+        UserDetails userDetailsFragment = new UserDetails();
+        Bundle args = new Bundle();
+
+        args.putString("username", userSavedData.getUsername());
+        args.putString("emailId", userSavedData.getEmailId());
+        args.putString("password", userSavedData.getpassword());
+        args.putString("serviceType", userSavedData.getServiceType());
+        userDetailsFragment.setArguments(args);
+
+        if (getActivity() != null) {
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.user_details_container, userDetailsFragment)
+                    .addToBackStack(null)
+                    .commit();
+
+            // Hide the RecyclerView and show the user details container
+            recyclerView.setVisibility(View.GONE);
+            getView().findViewById(R.id.user_details_container).setVisibility(View.VISIBLE);
+        } else {
+            Log.e("HomeFragment", "Activity is null. Cannot perform fragment transaction.");
+        }
+    }
+
 
     public void onDestroyView() {
         super.onDestroyView();

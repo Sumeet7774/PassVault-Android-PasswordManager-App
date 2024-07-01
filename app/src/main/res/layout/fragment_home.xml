@@ -1,34 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- res/layout/fragment_home.xml -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- RecyclerView -->
+    <!-- Your RecyclerView and other elements -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/progressBarLoading"
-        android:layout_marginBottom="8dp" />
-
-
-    <TextView
-        android:id="@+id/norecordsfound_textview"
-        android:layout_centerInParent="true"
-        android:visibility="gone"
-        android:text="No records found"
-        android:textStyle="bold"
-        android:textSize="@dimen/_15sdp"
-        android:fontFamily="@font/bebas_regular"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp" />
 
     <ProgressBar
         android:id="@+id/progressBarLoading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_gravity="center"
         android:visibility="gone" />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/norecordsfound_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:text="No records found" />
+
+    <!-- Container for fragment transactions -->
+    <FrameLayout
+        android:id="@+id/user_details_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" /> <!-- Set visibility to gone initially -->
+
+</FrameLayout>

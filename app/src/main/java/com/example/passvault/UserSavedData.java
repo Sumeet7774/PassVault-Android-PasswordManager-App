@@ -5,7 +5,6 @@ public class UserSavedData {
     private String emailId;
     private String password;
     private String serviceType;
-    //private int img;
 
     public UserSavedData(String username,String emailId ,String password, String serviceType)
     {
@@ -13,22 +12,7 @@ public class UserSavedData {
         this.emailId = emailId;
         this.password = password;
         this.serviceType = serviceType;
-        //this.img = img;
     }
-
-    /*
-    public int getImg()
-    {
-        return img;
-    }
-
-    public void setImg(int img)
-    {
-        this.img = img;
-    }
-
-     */
-
 
     public String getUsername()
     {
