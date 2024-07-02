@@ -3,6 +3,7 @@ package com.example.passvault;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -63,6 +64,19 @@ public class HomeFragment extends Fragment {
         retrieveUserId(existingEmailid);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        String userId = sessionManagement.getUserId();
+
+        if (userId != null) {
+            loadallData(userId);
+        } else {
+            String existingEmailid = sessionManagement.getEmailid();
+            retrieveUserId(existingEmailid);
+        }
     }
 
     private void showProgressBar() {
@@ -224,19 +238,16 @@ public class HomeFragment extends Fragment {
         userDetailsFragment.setArguments(args);
 
         if (getActivity() != null) {
-            getActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.user_details_container, userDetailsFragment)
-                    .addToBackStack(null)
-                    .commit();
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
+            transaction.replace(R.id.user_details_container, userDetailsFragment).addToBackStack(null).commit();
 
-            // Hide the RecyclerView and show the user details container
             recyclerView.setVisibility(View.GONE);
             getView().findViewById(R.id.user_details_container).setVisibility(View.VISIBLE);
         } else {
             Log.e("HomeFragment", "Activity is null. Cannot perform fragment transaction.");
         }
     }
-
 
     public void onDestroyView() {
         super.onDestroyView();
