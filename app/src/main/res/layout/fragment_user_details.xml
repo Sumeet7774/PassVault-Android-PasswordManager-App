@@ -27,7 +27,7 @@
         android:paddingEnd="@dimen/_16sdp">
 
         <RelativeLayout
-            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -37,18 +37,18 @@
                 android:layout_height="wrap_content"
                 android:text="Username:-"
                 android:fontFamily="@font/bebas_regular"
-                android:textSize="@dimen/_20sdp"
+                android:textSize="@dimen/_15sdp"
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/_10sdp" />
 
             <TextView
                 android:id="@+id/usernameShow_textview"
-                android:fontFamily="@font/bebas_regular"
-                android:textSize="@dimen/_20sdp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textSize="@dimen/_10sdp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/detailsUsername_textview"
-                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_alignBaseline="@id/detailsUsername_textview"
                 android:layout_alignBottom="@id/detailsUsername_textview" />
         </RelativeLayout>
@@ -63,15 +63,16 @@
                 android:layout_height="wrap_content"
                 android:text="Email ID:-"
                 android:fontFamily="@font/bebas_regular"
-                android:textSize="@dimen/_20sdp"
+                android:textSize="@dimen/_15sdp"
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/_8sdp" />
 
             <TextView
                 android:id="@+id/emailidShow_textview"
-                android:fontFamily="@font/bebas_regular"
+                android:textSize="@dimen/_10sdp"
+                android:fontFamily="@font/comfortaa_bold"
                 android:layout_toEndOf="@id/detailsEmailId_textview"
-                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_alignBaseline="@id/detailsEmailId_textview"
                 android:layout_alignBottom="@id/detailsEmailId_textview"
                 android:layout_width="wrap_content"
@@ -89,16 +90,16 @@
                 android:layout_height="wrap_content"
                 android:text="Password:-"
                 android:fontFamily="@font/bebas_regular"
-                android:textSize="@dimen/_20sdp"
+                android:textSize="@dimen/_15sdp"
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/_8sdp" />
 
             <TextView
                 android:id="@+id/passwordShow_textview"
-                android:fontFamily="@font/bebas_regular"
-                android:textSize="@dimen/_20sdp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textSize="@dimen/_10sdp"
                 android:layout_toEndOf="@id/detailsPassword_textview"
-                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_alignBaseline="@id/detailsPassword_textview"
                 android:layout_alignBottom="@id/detailsPassword_textview"
                 android:layout_width="wrap_content"
@@ -114,25 +115,24 @@
                 android:id="@+id/detailsServiceType_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Service Type"
+                android:text="Service Type:-"
                 android:fontFamily="@font/bebas_regular"
-                android:textSize="@dimen/_20sdp"
+                android:textSize="@dimen/_15sdp"
                 android:textStyle="bold"
                 android:layout_marginTop="@dimen/_8sdp" />
 
             <TextView
                 android:id="@+id/servicetypeShow_textview"
-                android:fontFamily="@font/bebas_regular"
-                android:textSize="@dimen/_20sdp"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textSize="@dimen/_10sdp"
                 android:layout_toEndOf="@id/detailsServiceType_textview"
-                android:layout_marginStart="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_5sdp"
                 android:layout_alignBaseline="@id/detailsServiceType_textview"
                 android:layout_alignBottom="@id/detailsServiceType_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
         </RelativeLayout>
-
     </LinearLayout>
 
     <FrameLayout
