@@ -74,52 +74,75 @@ public class HomePage extends AppCompatActivity {
         bottom_navigation_view.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-
                 int itemId = menuItem.getItemId();
+                Fragment currentFragment = getCurrentFragment();
 
-                if(itemId == R.id.navHome) {
-
-                    // If HomeFragment is already displayed, do nothing
-                    if(!(getCurrentFragment() instanceof HomeFragment))
-                    {
-                        loadFragment(new HomeFragment(), false);
+                if (itemId == R.id.navHome) {
+                    if (!(currentFragment instanceof HomeFragment)) {
+                        loadFragment(new HomeFragment(), currentFragment, false);
+                    }
+                } else if (itemId == R.id.navSearch) {
+                    if (!(currentFragment instanceof SearchFragment)) {
+                        loadFragment(new SearchFragment(), currentFragment, false);
+                    }
+                } else {
+                    if (!(currentFragment instanceof ProfileFragment)) {
+                        loadFragment(new ProfileFragment(), currentFragment, false);
                     }
                 }
-                else if(itemId == R.id.navSearch)
-                {
-                    loadFragment(new SearchFragment(), false);
-                }
-                else
-                { // navProfile
-                    loadFragment(new ProfileFragment(), false);
-                }
-
                 return true;
             }
         });
     }
 
-    // Function to load fragment
-    private void loadFragment(Fragment fragment, boolean isAppInitialized) {
+    private void loadFragment(Fragment newFragment, boolean isAppInitialized) {
+        Fragment currentFragment = getCurrentFragment();
+        loadFragment(newFragment, currentFragment, isAppInitialized);
+    }
+
+    private void loadFragment(Fragment newFragment, Fragment currentFragment, boolean isAppInitialized) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        if(isAppInitialized && fragmentManager.findFragmentById(R.id.frameLayout) == null)
-        {
-            // Add HomeFragment only if it's not already added
-            fragmentTransaction.add(R.id.frameLayout, fragment);
-        }
-        else
-        {
-            fragmentTransaction.replace(R.id.frameLayout, fragment);
+        if (currentFragment != null) {
+            // Set animations based on the navigation direction
+            if (newFragment instanceof HomeFragment) {
+                fragmentTransaction.setCustomAnimations(
+                        R.anim.slide_in_left, R.anim.slide_out_right,
+                        R.anim.slide_in_right, R.anim.slide_out_left
+                );
+            } else if (newFragment instanceof SearchFragment) {
+                if (currentFragment instanceof HomeFragment) {
+                    fragmentTransaction.setCustomAnimations(
+                            R.anim.slide_in_right, R.anim.slide_out_left,
+                            R.anim.slide_in_left, R.anim.slide_out_right
+                    );
+                } else if (currentFragment instanceof ProfileFragment) {
+                    fragmentTransaction.setCustomAnimations(
+                            R.anim.slide_in_left, R.anim.slide_out_right,
+                            R.anim.slide_in_right, R.anim.slide_out_left
+                    );
+                }
+            } else if (newFragment instanceof ProfileFragment) {
+                fragmentTransaction.setCustomAnimations(
+                        R.anim.slide_in_right, R.anim.slide_out_left,
+                        R.anim.slide_in_left, R.anim.slide_out_right
+                );
+            }
         }
 
+        if (isAppInitialized && fragmentManager.findFragmentById(R.id.frameLayout) == null) {
+            fragmentTransaction.add(R.id.frameLayout, newFragment);
+        } else {
+            fragmentTransaction.replace(R.id.frameLayout, newFragment);
+        }
+
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
 
-        manageFloatingButtonVisibility(fragment);
+        manageFloatingButtonVisibility(newFragment);
     }
 
-    // Function to get the current fragment displayed
     private Fragment getCurrentFragment() {
         return getSupportFragmentManager().findFragmentById(R.id.frameLayout);
     }
