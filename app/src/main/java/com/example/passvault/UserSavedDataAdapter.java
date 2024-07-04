@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -21,15 +22,21 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
     ArrayList<UserSavedData> arrayList = new ArrayList<>();
     private int lastPosition = -1;
     private OnItemClickListener listener;
+    private OnEditClickListener editClickListener;
 
-    public UserSavedDataAdapter(Context context, ArrayList<UserSavedData> arrayList, OnItemClickListener listener) {
+    public UserSavedDataAdapter(Context context, ArrayList<UserSavedData> arrayList, OnItemClickListener listener, OnEditClickListener editClickListener) {
         this.context = context;
         this.arrayList = arrayList;
         this.listener = listener;
+        this.editClickListener = editClickListener;
     }
 
     public interface OnItemClickListener {
         void onItemClick(UserSavedData userSavedData);
+    }
+
+    public interface OnEditClickListener {
+        void onEditClick(UserSavedData userSavedData);
     }
 
     @NonNull
@@ -46,17 +53,13 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
 
         UserSavedData data = arrayList.get(position);
 
-        //holder.username.setText(arrayList.get(position).getUsername());
-        //holder.emailid.setText(arrayList.get(position).getEmailId());
-        //holder.password.setText(arrayList.get(position).getpassword());
-        //holder.serviceType.setText(arrayList.get(position).getServiceType());
-
         holder.username.setText(data.getUsername());
         holder.serviceType.setText(data.getServiceType());
 
         setAnimation(holder.itemView, position);
 
         holder.itemView.setOnClickListener(v -> listener.onItemClick(data));
+        holder.editButton.setOnClickListener(v -> editClickListener.onEditClick(data));
     }
 
     @Override
@@ -81,15 +84,15 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
     public class UsersSavedDataHolder extends RecyclerView.ViewHolder {
 
         TextView username;
-        //TextView emailid;
-        //TextView password;
         TextView serviceType;
+        ImageButton editButton;
 
         public UsersSavedDataHolder(@NonNull View itemView) {
             super(itemView);
 
             username = itemView.findViewById(R.id.cardviewUsername_textview);
             serviceType = itemView.findViewById(R.id.cardviewServiceType_textview);
+            editButton = itemView.findViewById(R.id.editButton);
         }
     }
 }

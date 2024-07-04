@@ -28,12 +28,168 @@
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/updateData_animationview"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/_180sdp"
+            android:layout_height="@dimen/_150sdp"
             app:lottie_rawRes="@raw/updateanimation"
             app:lottie_autoPlay="true"
             app:lottie_loop="true" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/topupdatedatalayout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#DECDF8"
+            android:padding="@dimen/_20sdp">
+
+            <TextView
+                android:id="@+id/updateYourDetails_textview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Update Your Details"
+                android:fontFamily="@font/comfortaa_bold"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/updateUsername_textview"
+                android:text="Username"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/updateUsername_edittext"
+                android:hint="Enter Username"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:maxLength="10"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:inputType="textPersonName"
+                android:drawableStart="@drawable/baseline_account_circle_24"
+                android:drawablePadding="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/custom_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp" />
+
+            <TextView
+                android:id="@+id/updateEmail_textview"
+                android:text="Email"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/updateEmail_edittext"
+                android:hint="Enter Email"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:maxLength="10"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:inputType="textEmailAddress"
+                android:drawableStart="@drawable/baseline_email_24"
+                android:drawablePadding="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/custom_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp" />
+
+            <TextView
+                android:id="@+id/updatePassword_textview"
+                android:text="Password"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/updatePassword_edittext"
+                android:hint="Enter Password"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                android:maxLength="8"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:inputType="textPassword"
+                android:drawableStart="@drawable/baseline_lock_outline_24"
+                android:drawableEnd="@drawable/eye_visible"
+                android:drawablePadding="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/custom_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp" />
+
+            <TextView
+                android:id="@+id/updateServiceType_textview"
+                android:text="Service Type"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/updateServiceType_edittext"
+                android:hint="Enter Service Type"
+                android:textSize="@dimen/_15sdp"
+                android:textStyle="bold"
+                android:maxLength="15"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:inputType="text"
+                android:drawableStart="@drawable/baseline_build_24"
+                android:drawablePadding="@dimen/_5sdp"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/custom_edittext"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp" />
 
 
+        </LinearLayout>
+    </ScrollView>
 
+    <LinearLayout
+        android:id="@+id/bottomLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/_15sdp"
+        android:paddingEnd="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp">
+
+        <Button
+            android:id="@+id/updateDetails_Button"
+            android:text="Update Details"
+            android:textSize="@dimen/_20sdp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/_35sdp"
+            android:background="@drawable/custom_round_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 </RelativeLayout>

@@ -1,5 +1,6 @@
 package com.example.passvault;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -56,7 +57,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //userSavedDataAdapter = new UserSavedDataAdapter(HomeFragment.this,arrayList);
-        userSavedDataAdapter = new UserSavedDataAdapter(getContext(), arrayList, this::showUserDetails);
+        userSavedDataAdapter = new UserSavedDataAdapter(getContext(), arrayList, this::showUserDetails, this::editUserDetails);
         recyclerView.setAdapter(userSavedDataAdapter);
 
         sessionManagement = new SessionManagement(getContext());
@@ -246,6 +247,24 @@ public class HomeFragment extends Fragment {
             getView().findViewById(R.id.user_details_container).setVisibility(View.VISIBLE);
         } else {
             Log.e("HomeFragment", "Activity is null. Cannot perform fragment transaction.");
+        }
+    }
+
+    private void editUserDetails(UserSavedData userSavedData) {
+        Intent intent = new Intent(getContext(), UpdateData.class);
+        intent.putExtra("username", userSavedData.getUsername());
+        intent.putExtra("emailId", userSavedData.getEmailId());
+        intent.putExtra("password", userSavedData.getpassword());
+        intent.putExtra("serviceType", userSavedData.getServiceType());
+
+        if (getActivity() != null)
+        {
+            startActivity(intent);
+            getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        }
+        else
+        {
+            Log.e("HomeFragment", "Activity is null. Cannot start EditDataActivity.");
         }
     }
 
