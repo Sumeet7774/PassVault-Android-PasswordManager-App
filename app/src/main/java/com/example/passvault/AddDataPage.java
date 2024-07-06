@@ -185,11 +185,20 @@ public class AddDataPage extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiEndpoints.insertData_url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (response.contains("Data inserted successfully")) {
+                if (response.contains("Data inserted successfully"))
+                {
                     showDataSavedSuccessDialogBox(username, email_id, password, service_type);
-                } else if (response.contains("Error inserting data")) {
+                }
+                else if(response.contains("Record already exists"))
+                {
+                    Toast.makeText(AddDataPage.this,"Record already Exists!", Toast.LENGTH_SHORT).show();
+                }
+                else if (response.contains("Error inserting data"))
+                {
                     Toast.makeText(AddDataPage.this, "Error", Toast.LENGTH_SHORT).show();
-                } else {
+                }
+                else
+                {
                     Toast.makeText(AddDataPage.this, "Failed to save data.", Toast.LENGTH_SHORT).show();
                 }
             }
