@@ -58,9 +58,17 @@ public class HomePage extends AppCompatActivity {
             return; // Exit the method
         }
 
-        // Load HomeFragment by default when activity is initialized
-        loadFragment(new HomeFragment(), true);
-        // Load HomeFragment by default when activity is initialized
+        String targetFragment = getIntent().getStringExtra("TARGET_FRAGMENT");
+
+        if (targetFragment != null && targetFragment.equals("ProfileFragment"))
+        {
+            loadFragment(new ProfileFragment(), true);
+            bottom_navigation_view.setSelectedItemId(R.id.navProfile);
+        }
+        else
+        {
+            loadFragment(new HomeFragment(), true);
+        }
 
         add_data_button.setOnClickListener(new View.OnClickListener() {
             @Override

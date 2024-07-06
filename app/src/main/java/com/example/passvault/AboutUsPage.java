@@ -36,6 +36,7 @@ public class AboutUsPage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AboutUsPage.this, HomePage.class);
+                intent.putExtra("TARGET_FRAGMENT", "ProfileFragment");
                 startActivity(intent);
                 overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
                 finish();
