@@ -3,6 +3,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="about_us_description">Welcome to PassVault, your secure password manager designed to keep your digital life safe and organized. </string>
     <string name="owner_description">PassVault is an app created by Sumeet Kapadia, a committed B.Tech Computer Engineering student at Pandit Deendayal Energy University (PDEU) in Gandhinagar, Gujarat, India.</string>
+    <string name="contact_us_description">If you have any questions or need further assistance regarding the PassVault application, please feel free to contact Sumeet Kapadia.You can find his LinkedIn profile and email address below.</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>

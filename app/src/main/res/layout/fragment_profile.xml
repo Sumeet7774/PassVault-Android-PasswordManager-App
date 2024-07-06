@@ -18,12 +18,11 @@
         android:id="@+id/profileNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello User"
-        android:textSize="@dimen/_20sdp"
+        android:fontFamily="@font/comfortaa_bold"
+        android:textSize="@dimen/_15sdp"
+        android:layout_centerHorizontal="true"
         android:layout_below="@id/profilePhoto"
-        android:layout_alignStart="@id/profilePhoto"
-        android:layout_marginTop="@dimen/_5sdp"
-        android:layout_marginStart="@dimen/_3sdp" />
+        android:layout_marginTop="@dimen/_5sdp" />
 
 
     <androidx.cardview.widget.CardView
@@ -48,7 +47,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardHelp"
+        android:id="@+id/cardContactUs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/cardAboutUs"
@@ -61,7 +60,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Help"
+            android:text="Contact Us"
             android:fontFamily="@font/comfortaa_bold"
             android:textSize="@dimen/_15sdp"
             android:padding="@dimen/_15sdp" />
