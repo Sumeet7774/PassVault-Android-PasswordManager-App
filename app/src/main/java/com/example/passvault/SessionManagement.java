@@ -20,6 +20,15 @@ public class SessionManagement {
         prefs.edit().putString("user_id",userid).apply();
     }
 
+    public String getPasswordId()
+    {
+        return prefs.getString("password_id","");
+    }
+
+    public void setPasswordId(String passwordId){
+        prefs.edit().putString("password_id",passwordId).apply();
+    }
+
     public void setEmailid(String emailid) {
         prefs.edit().putString("email_id", emailid).apply();
     }

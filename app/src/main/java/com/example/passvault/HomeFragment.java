@@ -250,21 +250,18 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private void editUserDetails(UserSavedData userSavedData) {
+    private void editUserDetails(final UserSavedData userSavedData) {
         Intent intent = new Intent(getContext(), UpdateData.class);
         intent.putExtra("username", userSavedData.getUsername());
         intent.putExtra("emailId", userSavedData.getEmailId());
         intent.putExtra("password", userSavedData.getpassword());
         intent.putExtra("serviceType", userSavedData.getServiceType());
 
-        if (getActivity() != null)
-        {
+        if (getActivity() != null) {
             startActivity(intent);
             getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-        }
-        else
-        {
-            Log.e("HomeFragment", "Activity is null. Cannot start EditDataActivity.");
+        } else {
+            Log.e("HomeFragment", "Activity is null. Cannot start UpdateData activity.");
         }
     }
 
