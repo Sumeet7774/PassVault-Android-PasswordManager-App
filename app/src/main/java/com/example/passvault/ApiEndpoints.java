@@ -12,4 +12,5 @@ public class ApiEndpoints {
     public static final String updateData_url = base_url + "update_data.php";
     public static final String retrieveUsername = base_url + "get_username.php";
     public static final String deleteData_url = base_url + "delete_data.php";
+    public static final String deleteUser_url = base_url + "delete_user.php";
 }

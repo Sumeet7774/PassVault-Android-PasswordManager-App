@@ -3,6 +3,7 @@ package com.example.passvault;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,6 +28,8 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ProfileFragment extends Fragment {
 
@@ -41,6 +44,7 @@ public class ProfileFragment extends Fragment {
         CardView card_AboutUs = view.findViewById(R.id.cardAboutUs);
         CardView card_contactUs = view.findViewById(R.id.cardContactUs);
         MaterialButton logout_button = view.findViewById(R.id.logout_btn);
+        MaterialButton deleteUser_button = view.findViewById(R.id.deleteUser_btn);
         profile_name_textview = view.findViewById(R.id.profileNameText);
 
         sessionManagement = new SessionManagement(requireContext());
@@ -49,6 +53,13 @@ public class ProfileFragment extends Fragment {
         String emailId = sessionManagement.getEmailid();
 
         retrieveUsername(userId,emailId);
+
+        deleteUser_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showConfirmDeleteUserDialog(userId);
+            }
+        });
 
         card_AboutUs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +87,84 @@ public class ProfileFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void showConfirmDeleteUserDialog(String userId) {
+        Dialog confirmDeleteUserDialog = new Dialog(requireContext());
+        confirmDeleteUserDialog.setContentView(R.layout.custom_confirmdeleteuser_dialog_box);
+
+        MaterialButton deleteButton = confirmDeleteUserDialog.findViewById(R.id.DeleteUserButton_dialogBox);
+        MaterialButton cancelButton = confirmDeleteUserDialog.findViewById(R.id.cancelButton_DeleteUser_dialogBox);
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteUser(userId);
+                confirmDeleteUserDialog.dismiss();
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmDeleteUserDialog.dismiss(); // Dismiss the dialog
+            }
+        });
+
+        confirmDeleteUserDialog.show();
+    }
+
+    private void deleteUser(String userId) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiEndpoints.deleteUser_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        String successMessage = extractSuccessMessage(response);
+                        if (successMessage != null && successMessage.equalsIgnoreCase("User deleted successfully")) {
+                            Toast.makeText(getContext(), "User account deleted", Toast.LENGTH_SHORT).show();
+                            sessionManagement.logout();
+
+                            // Start the LogoutSplashScreen activity
+                            Intent intent = new Intent(requireContext(), LogoutSplashScreen.class);
+                            startActivity(intent);
+
+                            // Finish the current activity immediately
+                            getActivity().finish();
+                        } else {
+                            Toast.makeText(getContext(), "Error deleting user", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("DeleteUser", "Error: " + error.toString());
+                        Toast.makeText(getContext(), "Error deleting user", Toast.LENGTH_SHORT).show();
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", userId);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(requireContext());
+        requestQueue.add(stringRequest);
+    }
+
+    private String extractSuccessMessage(String response) {
+        String successMessage = null;
+        String pattern = "User deleted successfully";
+        Pattern r = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+        Matcher m = r.matcher(response);
+
+        if (m.find()) {
+            successMessage = m.group();
+        }
+
+        return successMessage;
     }
 
     private void retrieveUsername(String userId, String emailId) {
