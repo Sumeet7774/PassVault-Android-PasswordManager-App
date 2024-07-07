@@ -23,12 +23,14 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
     private int lastPosition = -1;
     private OnItemClickListener listener;
     private OnEditClickListener editClickListener;
+    private OnDeleteClickListener onDeleteClickListener;
 
-    public UserSavedDataAdapter(Context context, ArrayList<UserSavedData> arrayList, OnItemClickListener listener, OnEditClickListener editClickListener) {
+    public UserSavedDataAdapter(Context context, ArrayList<UserSavedData> arrayList, OnItemClickListener listener, OnEditClickListener editClickListener, OnDeleteClickListener deleteClickListener) {
         this.context = context;
         this.arrayList = arrayList;
         this.listener = listener;
         this.editClickListener = editClickListener;
+        this.onDeleteClickListener = deleteClickListener;
     }
 
     public interface OnItemClickListener {
@@ -37,6 +39,10 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
 
     public interface OnEditClickListener {
         void onEditClick(UserSavedData userSavedData);
+    }
+
+    public interface OnDeleteClickListener {
+        void onDeleteClick(UserSavedData userSavedData);
     }
 
     @NonNull
@@ -60,6 +66,11 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
 
         holder.itemView.setOnClickListener(v -> listener.onItemClick(data));
         holder.editButton.setOnClickListener(v -> editClickListener.onEditClick(data));
+        holder.delete_button.setOnClickListener(v -> {
+            if (onDeleteClickListener != null) {
+                onDeleteClickListener.onDeleteClick(data);
+            }
+        });
     }
 
     @Override
@@ -86,6 +97,7 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
         TextView username;
         TextView serviceType;
         ImageButton editButton;
+        ImageButton delete_button;
 
         public UsersSavedDataHolder(@NonNull View itemView) {
             super(itemView);
@@ -93,6 +105,7 @@ public class UserSavedDataAdapter extends RecyclerView.Adapter<UserSavedDataAdap
             username = itemView.findViewById(R.id.cardviewUsername_textview);
             serviceType = itemView.findViewById(R.id.cardviewServiceType_textview);
             editButton = itemView.findViewById(R.id.editButton);
+            delete_button = itemView.findViewById(R.id.deleteButton);
         }
     }
 }

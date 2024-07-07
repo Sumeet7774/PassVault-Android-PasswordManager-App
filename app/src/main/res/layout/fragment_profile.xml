@@ -68,6 +68,22 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/deleteUser_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_above="@id/logout_btn"
+        android:backgroundTint="@color/red"
+        android:fontFamily="@font/comfortaa_bold"
+        android:padding="@dimen/_10sdp"
+        android:text="DELETE USER"
+        android:textColor="#DECDF8"
+        android:textSize="@dimen/_15sdp" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/logout_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

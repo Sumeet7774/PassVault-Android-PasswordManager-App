@@ -1,5 +1,6 @@
 package com.example.passvault;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +26,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.button.MaterialButton;
+import android.view.View;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -57,7 +61,7 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         //userSavedDataAdapter = new UserSavedDataAdapter(HomeFragment.this,arrayList);
-        userSavedDataAdapter = new UserSavedDataAdapter(getContext(), arrayList, this::showUserDetails, this::editUserDetails);
+        userSavedDataAdapter = new UserSavedDataAdapter(getContext(), arrayList, this::showUserDetails, this::editUserDetails,this::deleteUserDetails);
         recyclerView.setAdapter(userSavedDataAdapter);
 
         sessionManagement = new SessionManagement(getContext());
@@ -263,6 +267,196 @@ public class HomeFragment extends Fragment {
         } else {
             Log.e("HomeFragment", "Activity is null. Cannot start UpdateData activity.");
         }
+    }
+
+    private void deleteUserDetails(final UserSavedData userSavedData)
+    {
+        showConfirmDeleteDialog(userSavedData);
+    }
+
+    private String extractPasswordIdFromResponse(String response) {
+        String pattern = "Connection Successfull\\s*(\\d+)";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(response);
+
+        if (m.find()) {
+            return m.group(1);
+        }
+
+        Log.d("extractPasswordIdFromResponse", "Failed to extract password ID from response: " + response);
+        return null;
+    }
+
+    private void retrievePasswordIdForDeletion(final String userId, final String username, final String emailId, final String password, final String serviceType) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiEndpoints.retrievePasswordId_url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("RetrievePasswordId", "Response: " + response);
+                        String passwordId = extractPasswordIdFromResponse(response);
+                        Log.d("RetrievedPasswordid","Password ID:- " + passwordId);
+
+                        if (passwordId != null) {
+                            deleteData(userId, passwordId);
+                        } else {
+                            Toast.makeText(getContext(), "Failed to retrieve password ID", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("RetrievePasswordId", "Error: " + error.toString());
+                Toast.makeText(getContext(), "Error retrieving password ID", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", userId);
+                params.put("username", username);
+                params.put("email_id", emailId);
+                params.put("password", password);
+                params.put("service_type", serviceType);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
+    }
+
+    private void retrieveUserIdForDeletion(final String email_id, final UserSavedData userSavedData) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiEndpoints.retrieveUserId_url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("retrieveUserId", "Response: " + response);
+                String userId = extractUserIdFromResponse(response);
+
+                if (userId != null) {
+                    sessionManagement.setUserId(userId);
+                    retrievePasswordIdForDeletion(userId, userSavedData.getUsername(), userSavedData.getEmailId(), userSavedData.getpassword(), userSavedData.getServiceType());
+                } else {
+                    Toast.makeText(getContext(), "User not found", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(), "Error retrieving user_id", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("email_id", email_id);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
+    }
+
+    private void deleteData(final String user_id, final String password_id) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, ApiEndpoints.deleteData_url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Log.d("DeleteData", "Response: " + response);
+
+                String successMessage = extractSuccessMessage(response);
+
+                Log.d("DeleteSuccessMessage","Delete Success Message: " + successMessage);
+
+                if (successMessage != null) {
+                    showDataDeletedSuccessDialog();
+                    loadallData(user_id);
+                } else {
+                    Toast.makeText(getContext(), "Failed to delete record", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("DeleteData", "Error: " + error.toString());
+                Toast.makeText(getContext(), "Error deleting data", Toast.LENGTH_SHORT).show();
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", user_id);
+                params.put("password_id", password_id);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        requestQueue.add(stringRequest);
+    }
+
+    private String extractSuccessMessage(String response) {
+        String successMessage = null;
+        String pattern = "Record deleted successfully";
+        Pattern r = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
+        Matcher m = r.matcher(response);
+
+        if (m.find()) {
+            successMessage = m.group();
+        }
+
+        return successMessage;
+    }
+
+    private void showConfirmDeleteDialog(final UserSavedData userSavedData) {
+        Dialog confirmDeleteDialog = new Dialog(getContext());
+        confirmDeleteDialog.setContentView(R.layout.custom_confirmdelete_dialog_box);
+
+        MaterialButton cancelButton = confirmDeleteDialog.findViewById(R.id.cancelButton_DeleteData_dialogBox);
+        MaterialButton deleteButton = confirmDeleteDialog.findViewById(R.id.DeleteButton_dialogBox);
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmDeleteDialog.dismiss();
+            }
+        });
+
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                confirmDeleteDialog.dismiss();
+
+                String userId = sessionManagement.getUserId();
+
+                if (userId != null) {
+                    retrievePasswordIdForDeletion(userId, userSavedData.getUsername(), userSavedData.getEmailId(), userSavedData.getpassword(), userSavedData.getServiceType());
+                } else {
+                    String existingEmailid = sessionManagement.getEmailid();
+                    retrieveUserIdForDeletion(existingEmailid, userSavedData);
+                }
+            }
+        });
+
+        confirmDeleteDialog.show();
+    }
+
+    private void showDataDeletedSuccessDialog() {
+        Dialog successfulDataDeletedDialogBox = new Dialog(getContext());
+        successfulDataDeletedDialogBox.setContentView(R.layout.custom_deletedata_successfully_dialog_box);
+        Button dialogBoxOkButton = successfulDataDeletedDialogBox.findViewById(R.id.okButtonDataDeletedSuccesfull_dialogBox);
+        dialogBoxOkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                successfulDataDeletedDialogBox.dismiss();
+                if (getActivity() != null) {
+                    Intent intent = new Intent(getContext(), HomePage.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+                    getActivity().finish();
+                }
+            }
+        });
+        successfulDataDeletedDialogBox.show();
     }
 
     public void onDestroyView() {
