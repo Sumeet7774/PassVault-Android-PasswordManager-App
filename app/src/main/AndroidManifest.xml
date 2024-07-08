@@ -38,9 +38,6 @@
             android:name=".PasswordforgotPage"
             android:exported="false" />
         <activity
-            android:name=".SettingsFragment"
-            android:exported="false" />
-        <activity
             android:name=".HomePage"
             android:exported="false" />
         <activity
