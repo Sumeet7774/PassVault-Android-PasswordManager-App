@@ -115,7 +115,7 @@ public class ProfileFragment extends Fragment {
                     public void onResponse(String response) {
                         String successMessage = extractSuccessMessage(response);
                         if (successMessage != null && successMessage.equalsIgnoreCase("User deleted successfully")) {
-                            Toast.makeText(getContext(), "User account deleted", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "User account deleted! Now logging out", Toast.LENGTH_SHORT).show();
                             sessionManagement.logout();
 
                             // Start the LogoutSplashScreen activity
